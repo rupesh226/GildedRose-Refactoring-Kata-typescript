@@ -33,7 +33,6 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      // Looks like we need increaseQuality, decreaseQuality, decreaseSellIn methods
       // This can be convert into a switch statement
 
       if (
@@ -47,8 +46,10 @@ export class GildedRose {
           }
         }
       } else {
+        // this is for AGED_BRIE and BACKSTAGE_PASS
         this.items[i].increaseQuality();
         if (this.items[i].name == BACKSTAGE_PASS) {
+          // case for BACKSTAGE_PASS
           if (this.items[i].sellIn < 11) {
             this.items[i].increaseQuality();
           }
@@ -58,6 +59,7 @@ export class GildedRose {
         }
       }
       if (this.items[i].name != SULFURAS) {
+        // decrease sellIn for all except SULFURAS
         this.items[i].decreaseSellIn();
       }
       if (this.items[i].sellIn < 0) {
@@ -69,6 +71,7 @@ export class GildedRose {
               }
             }
           } else {
+            //for BACKSTAGE_PASS SULFURAS and default
             this.items[i].quality =
               this.items[i].quality - this.items[i].quality;
           }
@@ -81,3 +84,57 @@ export class GildedRose {
     return this.items;
   }
 }
+
+/**
+ * overall BACKSTAGE_PASS condistion 
+
+if (this.items[i].sellIn < 0)) {
+  this.items[i].quality =
+  this.items[i].quality - this.items[i].quality;
+  or 
+  item.quality = 0;
+return ;
+}
+
+Line number 50 
+
+item.increaseQuality();
+
+line number 54 
+
+if (this.items[i].sellIn < 11) {
+  this.items[i].increaseQuality();
+}
+if (this.items[i].sellIn < 6) {
+  this.items[i].increaseQuality();
+}
+
+*/
+
+/**
+ * Overall AGED_BRIE condition
+ *
+ * from line number 51 -> his.items[i].increaseQuality();
+ *
+ * from line # 66 & 80 -> if (this.items[i].sellIn < 0) his.items[i].increaseQuality();
+ *
+ */
+
+/**
+ *
+ * SULFURAS
+ *
+ * No update ?
+ *
+ */
+
+/**
+ * Default condition
+ * Line # 45 - this.items[i].decreseQuality();
+ * Line # 71 - if (this.items[i].sellIn < 0) {this.items[i].decreseQuality();}
+ */
+
+/**
+ *
+ * after switch statment - decreaseSellIn
+ */
