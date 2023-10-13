@@ -3,15 +3,11 @@ const BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
 const SULFURAS = "Sulfuras, Hand of Ragnaros";
 
 export class Item {
-  name: string;
-  sellIn: number;
-  quality: number;
-
-  constructor(name, sellIn, quality) {
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
+  constructor(
+    public name: string,
+    public sellIn: number,
+    public quality: number
+  ) {}
 
   increaseQuality() {
     if (this.quality < 50) this.quality++;
@@ -25,11 +21,7 @@ export class Item {
 }
 
 export class GildedRose {
-  items: Array<Item>;
-
-  constructor(items = [] as Array<Item>) {
-    this.items = items;
-  }
+  constructor(public items: Array<Item> = []) {}
 
   updateQuality(): Array<Item> {
     for (let i = 0; i < this.items.length; i++) {
