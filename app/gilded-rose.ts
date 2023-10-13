@@ -23,26 +23,33 @@ export class GildedRose {
 
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
+      // Looks like we need increaseQuality, decreaseQuality, decreaseSellIn methods
+      // This can be convert into a switch statement
+
       if (
         this.items[i].name != AGED_BRIE &&
         this.items[i].name != BACKSTAGE_PASS
       ) {
         if (this.items[i].quality > 0) {
           if (this.items[i].name != SULFURAS) {
+            // Could be default ? because AGED_BRIE BACKSTAGE_PASS and SULFURAS condition are negative ? (decrease quality)
             this.items[i].quality = this.items[i].quality - 1;
           }
         }
       } else {
         if (this.items[i].quality < 50) {
+          // increase quality
           this.items[i].quality = this.items[i].quality + 1;
           if (this.items[i].name == BACKSTAGE_PASS) {
             if (this.items[i].sellIn < 11) {
               if (this.items[i].quality < 50) {
+                // increase quality
                 this.items[i].quality = this.items[i].quality + 1;
               }
             }
             if (this.items[i].sellIn < 6) {
               if (this.items[i].quality < 50) {
+                // increase quality
                 this.items[i].quality = this.items[i].quality + 1;
               }
             }
@@ -50,6 +57,7 @@ export class GildedRose {
         }
       }
       if (this.items[i].name != SULFURAS) {
+        // decrease sellIn
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
       if (this.items[i].sellIn < 0) {
@@ -57,6 +65,7 @@ export class GildedRose {
           if (this.items[i].name != BACKSTAGE_PASS) {
             if (this.items[i].quality > 0) {
               if (this.items[i].name != SULFURAS) {
+                // decrease quality
                 this.items[i].quality = this.items[i].quality - 1;
               }
             }
@@ -66,6 +75,7 @@ export class GildedRose {
           }
         } else {
           if (this.items[i].quality < 50) {
+            // increase quality
             this.items[i].quality = this.items[i].quality + 1;
           }
         }
