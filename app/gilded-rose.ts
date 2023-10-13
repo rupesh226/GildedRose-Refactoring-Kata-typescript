@@ -37,38 +37,54 @@ export class GildedRose {
 
       switch (this.items[i].name) {
         case AGED_BRIE:
-          this.items[i].increaseQuality();
-          if (this.items[i].sellIn < 0) {
-            this.items[i].increaseQuality();
-          }
+          this.ageBrieCase(this.items[i]);
           break;
 
         case BACKSTAGE_PASS:
-          this.items[i].increaseQuality();
-          if (this.items[i].sellIn < 11) {
-            this.items[i].increaseQuality();
-          }
-          if (this.items[i].sellIn < 6) {
-            this.items[i].increaseQuality();
-          }
-          if (this.items[i].sellIn < 0) {
-            this.items[i].quality = 0;
-          }
+          this.backstagePassCase(this.items[i]);
           break;
 
         case SULFURAS:
-          // No update
+          this.sulfurasCase(this.items[i]);
           break;
         default:
-          this.items[i].decreseQuality();
-          if (this.items[i].sellIn < 0) {
-            this.items[i].decreseQuality();
-          }
+          this.defaultCase(this.items[i]);
           break;
       }
       this.items[i].decreaseSellIn();
     }
 
     return this.items;
+  }
+
+  private ageBrieCase(item: Item) {
+    item.increaseQuality();
+    if (item.sellIn < 0) {
+      item.increaseQuality();
+    }
+  }
+
+  private backstagePassCase(item: Item) {
+    item.increaseQuality();
+    if (item.sellIn < 11) {
+      item.increaseQuality();
+    }
+    if (item.sellIn < 6) {
+      item.increaseQuality();
+    }
+    if (item.sellIn < 0) {
+      item.quality = 0;
+    }
+  }
+
+  private sulfurasCase(item: Item) {
+    // No update
+  }
+
+  private defaultCase(item: Item) {
+    item.decreseQuality();
+    if (item.sellIn < 0) {
+      item.decreseQuality();
+    }
   }
 }
