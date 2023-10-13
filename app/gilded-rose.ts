@@ -44,39 +44,28 @@ export class GildedRose {
           if (this.items[i].name != SULFURAS) {
             // Could be default ? because AGED_BRIE BACKSTAGE_PASS and SULFURAS condition are negative ? (decrease quality)
             this.items[i].decreseQuality();
-            //this.items[i].quality = this.items[i].quality - 1;
           }
         }
       } else {
-        // increase quality && ignore/removing if condition < 50
         this.items[i].increaseQuality();
-        //this.items[i].quality = this.items[i].quality + 1;
         if (this.items[i].name == BACKSTAGE_PASS) {
           if (this.items[i].sellIn < 11) {
-            // increase quality && ignore/removing if condition < 50
             this.items[i].increaseQuality();
-            //this.items[i].quality = this.items[i].quality + 1;
           }
           if (this.items[i].sellIn < 6) {
-            // increase quality && ignore/removing if condition < 50
             this.items[i].increaseQuality();
-            //this.items[i].quality = this.items[i].quality + 1;
           }
         }
       }
       if (this.items[i].name != SULFURAS) {
-        // decrease sellIn
         this.items[i].decreaseSellIn();
-        //this.items[i].sellIn = this.items[i].sellIn - 1;
       }
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != AGED_BRIE) {
           if (this.items[i].name != BACKSTAGE_PASS) {
             if (this.items[i].quality > 0) {
               if (this.items[i].name != SULFURAS) {
-                // decrease quality
                 this.items[i].decreseQuality();
-                //this.items[i].quality = this.items[i].quality - 1;
               }
             }
           } else {
@@ -84,9 +73,7 @@ export class GildedRose {
               this.items[i].quality - this.items[i].quality;
           }
         } else {
-          // increase quality && ignore/removing if condition < 50
           this.items[i].increaseQuality();
-          //this.items[i].quality = this.items[i].quality + 1;
         }
       }
     }
