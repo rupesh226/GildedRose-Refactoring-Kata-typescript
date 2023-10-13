@@ -48,25 +48,19 @@ export class GildedRose {
           }
         }
       } else {
-        if (this.items[i].quality < 50) {
-          // increase quality
-          this.items[i].increaseQuality();
-          //this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == BACKSTAGE_PASS) {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                // increase quality
-                this.items[i].increaseQuality();
-                //this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                // increase quality
-                this.items[i].increaseQuality();
-                //this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
+        // increase quality && ignore/removing if condition < 50
+        this.items[i].increaseQuality();
+        //this.items[i].quality = this.items[i].quality + 1;
+        if (this.items[i].name == BACKSTAGE_PASS) {
+          if (this.items[i].sellIn < 11) {
+            // increase quality && ignore/removing if condition < 50
+            this.items[i].increaseQuality();
+            //this.items[i].quality = this.items[i].quality + 1;
+          }
+          if (this.items[i].sellIn < 6) {
+            // increase quality && ignore/removing if condition < 50
+            this.items[i].increaseQuality();
+            //this.items[i].quality = this.items[i].quality + 1;
           }
         }
       }
@@ -90,11 +84,9 @@ export class GildedRose {
               this.items[i].quality - this.items[i].quality;
           }
         } else {
-          if (this.items[i].quality < 50) {
-            // increase quality
-            this.items[i].increaseQuality();
-            //this.items[i].quality = this.items[i].quality + 1;
-          }
+          // increase quality && ignore/removing if condition < 50
+          this.items[i].increaseQuality();
+          //this.items[i].quality = this.items[i].quality + 1;
         }
       }
     }
