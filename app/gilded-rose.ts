@@ -31,30 +31,32 @@ export class GildedRose {
     this.items = items;
   }
 
-  updateQuality() {
+  updateQuality(): Array<Item> {
     for (let i = 0; i < this.items.length; i++) {
-      // This can be convert into a switch statement
-
-      switch (this.items[i].name) {
-        case AGED_BRIE:
-          this.ageBrieCase(this.items[i]);
-          break;
-
-        case BACKSTAGE_PASS:
-          this.backstagePassCase(this.items[i]);
-          break;
-
-        case SULFURAS:
-          this.sulfurasCase(this.items[i]);
-          break;
-        default:
-          this.defaultCase(this.items[i]);
-          break;
-      }
-      this.items[i].decreaseSellIn();
+      this.updateQualityByItems(this.items[i]);
     }
 
     return this.items;
+  }
+
+  private updateQualityByItems(item: Item) {
+    switch (item.name) {
+      case AGED_BRIE:
+        this.ageBrieCase(item);
+        break;
+
+      case BACKSTAGE_PASS:
+        this.backstagePassCase(item);
+        break;
+
+      case SULFURAS:
+        this.sulfurasCase(item);
+        break;
+      default:
+        this.defaultCase(item);
+        break;
+    }
+    item.decreaseSellIn();
   }
 
   private ageBrieCase(item: Item) {
